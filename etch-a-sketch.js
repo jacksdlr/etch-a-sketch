@@ -9,6 +9,10 @@ button.addEventListener("click", () => {
 
 const container = document.querySelector(".grid-container")
 
+randomRGB = () => {
+    return Math.floor(Math.random() * (256))
+}
+
 gridCreator = (gridSize) => {
     document.querySelectorAll(".square").forEach((square) => {
         square.parentNode.removeChild(square)
@@ -25,7 +29,9 @@ gridCreator = (gridSize) => {
     const squares = document.querySelectorAll(".square")
     squares.forEach((square) => {
         square.addEventListener("mouseover", () => {
-            square.setAttribute("style", "background-color: darkred")
+            if (!square.hasAttribute("style")) {
+                square.setAttribute("style", `background-color: rgb(${randomRGB()}, ${randomRGB()}, ${randomRGB()})`)
+            } 
         })
     })
 }
