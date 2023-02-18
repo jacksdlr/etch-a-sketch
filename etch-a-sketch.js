@@ -1,18 +1,34 @@
+const button = document.querySelector("button")
+button.addEventListener("click", () => {
+    let gridSize = prompt("Enter number for new grid height/width:")
+    if (gridSize > 100) {
+        gridSize = 100
+    }
+    gridCreator(gridSize)
+})
+
 const container = document.querySelector(".grid-container")
 
-// add a grid of 16 x 16 divs
-for (let i = 0; i < 16; i++) {
-    for (let j = 0; j < 16; j++) {
+gridCreator = (gridSize) => {
+    document.querySelectorAll(".square").forEach((square) => {
+        square.parentNode.removeChild(square)
+    })
+    container.setAttribute("style", `display: grid;grid-template-columns: repeat(${gridSize}, 1fr);grid-template-rows: repeat(${gridSize}, 1fr);justify-content: center;height: 960px;width: 960px;align-content: center;`)
+
+    for (let i = 0; i < gridSize * gridSize; i++) {
         const square = document.createElement("div")
         square.classList.add("square")
         container.appendChild(square)
+
     }
+    // set color of square to dark red when mouse hovers over it
+    const squares = document.querySelectorAll(".square")
+    squares.forEach((square) => {
+        square.addEventListener("mouseover", () => {
+            square.setAttribute("style", "background-color: darkred")
+        })
+    })
 }
 
-// set color of square to dark red when mouse hovers over it
-const squares = document.querySelectorAll(".square")
-squares.forEach((square) => {
-    square.addEventListener("mouseover", () => {
-        square.setAttribute("style", "background-color: darkred")
-    })
-})
+gridCreator(16)
+
