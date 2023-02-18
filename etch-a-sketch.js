@@ -8,3 +8,11 @@ for (let i = 0; i < 16; i++) {
         container.appendChild(square)
     }
 }
+
+// set color of square to dark red when mouse hovers over it
+const squares = document.querySelectorAll(".square")
+squares.forEach((square) => {
+    square.addEventListener("mouseover", () => {
+        square.setAttribute("style", "background-color: darkred")
+    })
+})
